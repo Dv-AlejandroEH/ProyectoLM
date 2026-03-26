@@ -156,6 +156,7 @@ main {
     border: 1px solid var(--borde);
     border-radius: 14px;
     padding: 26px;
+    margin-bottom: 2rem;
 }
 
 .seccion-capsula p {
@@ -233,6 +234,26 @@ main {
     display: grid;
     gap: 10px;
     margin-top: 16px;
+}
+
+.formulario-google {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.formulario-google-aviso {
+    margin: 0;
+    color: var(--texto-suave);
+}
+
+.formulario-exito {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--texto);
 }
 
 label {

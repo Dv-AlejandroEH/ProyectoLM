@@ -82,26 +82,36 @@
 
         <section id="formulario" class="contenedor seccion-formulario">
             <h2>Deja tu mensaje para el futuro</h2>
-            <p>Completa el formulario y tu mensaje quedará guardado hasta la apertura.</p>
+            <p>El formulario se guarda en Google Forms para poder analizar los datos por año más adelante.</p>
 
-            <form class="formulario-mensaje" action="#" method="post">
-                <label for="nombre">Nombre</label>
-                <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+            <div class="formulario-google">
+                <a id="google-form-link" class="boton" href="#" target="_blank" rel="noopener noreferrer">Abrir formulario en Google</a>
+                <p id="google-form-aviso" class="formulario-google-aviso">
+                    El formulario se ve aquí como antes. Si faltan los IDs <strong>entry</strong>, al enviar se abrirá Google Forms.
+                </p>
 
-                <label for="correo">Correo electrónico</label>
-                <input id="correo" name="correo" type="email" placeholder="tu@email.com" required>
+                <form id="formulario-mensaje" class="formulario-mensaje" action="#" method="post" autocomplete="on">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
 
-                <label for="titulo">Título del mensaje</label>
-                <input id="titulo" name="titulo" type="text" placeholder="Ej: Carta para mi yo del futuro" required>
+                    <label for="titulo">Título del mensaje</label>
+                    <input id="titulo" name="titulo" type="text" placeholder="Ej: Carta para mi yo del futuro" required>
 
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="7" placeholder="Escribe aquí lo que quieres recordar dentro de 5 años..." required></textarea>
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="7" placeholder="Escribe aquí lo que quieres recordar dentro de 5 años..." required></textarea>
 
-                <label for="fecha">Fecha de apertura esperada</label>
-                <input id="fecha" name="fecha" type="date" required>
+                    <label for="imagen-url">URL de imagen (opcional)</label>
+                    <input id="imagen-url" name="imagen-url" type="url" placeholder="https://.../mi-imagen.jpg">
 
-                <button type="submit" class="boton">Guardar en la cápsula</button>
-            </form>
+                    <button type="submit" class="boton">Guardar en la cápsula</button>
+                </form>
+
+                <p id="formulario-exito" class="formulario-exito" hidden>
+                    Mensaje enviado correctamente. Ya quedó guardado en la cápsula.
+                </p>
+
+                <iframe name="google-form-dummy-target" title="Envío oculto" hidden></iframe>
+            </div>
         </section>
     </main>
 
