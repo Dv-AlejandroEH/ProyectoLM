@@ -1,0 +1,24 @@
+.boton {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primario), var(--primario-fuerte));
+    color: #03111e;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+.boton {
+    font-size: 25px;
+    display: flex;
+    
+}

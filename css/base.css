@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+main {
+    padding: 40px 0 70px;
+}
+
+.contenedor {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    margin: 0 0 14px;
+    line-height: 1.1;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+p {
+    margin: 0;
+    line-height: 1.6;
+}

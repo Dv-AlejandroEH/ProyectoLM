@@ -1,0 +1,69 @@
+.tarjeta {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.tarjeta h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.tarjeta ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+}
+
+.informacion {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-bottom: 30px;
+}
+
+.seccion-capsula {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 26px;
+    margin-bottom: 2rem;
+}
+
+.seccion-capsula p {
+    color: var(--texto-suave);
+    margin: 0;
+}
+
+.linea-tiempo .hito {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.linea-tiempo .hito:last-child {
+    margin-bottom: 0;
+}
+
+.punto {
+    margin-top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--primario);
+    box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.12);
+    flex-shrink: 0;
+}
+
+.linea-tiempo h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+.linea-tiempo p {
+    margin: 0;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}

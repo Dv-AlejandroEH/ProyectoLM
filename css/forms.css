@@ -1,0 +1,70 @@
+.seccion-formulario {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 26px;
+}
+
+.seccion-formulario h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.seccion-formulario > p {
+    margin: 0;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+.formulario-mensaje {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.formulario-google {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.formulario-google-aviso {
+    margin: 0;
+    color: var(--texto-suave);
+}
+
+.formulario-exito {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--texto);
+}
+
+label {
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid #475569;
+    background: var(--superficie-suave);
+    color: var(--texto);
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: 0.98rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid rgba(56, 189, 248, 0.35);
+    border-color: var(--primario);
+}

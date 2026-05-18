@@ -1,0 +1,18 @@
+@media (max-width: 640px) {
+    .navbar-nav {
+        margin-top: 10px;
+    }
+
+    .portada {
+        min-height: 62vh;
+    }
+
+    .portada-contenido {
+        padding: 56px 0;
+    }
+
+    .seccion-formulario,
+    .tarjeta {
+        padding: 18px;
+    }
+}
