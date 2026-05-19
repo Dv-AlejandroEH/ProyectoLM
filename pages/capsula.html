@@ -27,10 +27,10 @@
                         <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="capsula.html">Capsula</a>
+                        <a class="nav-link active" href="#">Capsula</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Destacados</a>
+                        <a class="nav-link" href="destacados.html">Destacados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="info.html">Informacion</a>
@@ -40,8 +40,8 @@
         </div>
     </nav>
 
-    <!-- Contenido principal -->
-    <main>
+    <!-- Contenido principal default -->
+    <main class="visible" id="default">
         <!-- Animacion del reloj -->
         <img src="/img/reloj-arena.gif" alt="reloj">
 
@@ -52,6 +52,98 @@
         <button onclick="reducirContador()" class="boton">Probar animación</button>
     </main>
 
+    <!-- Contenido principal cuando se abra la capsula-->
+    <main class="oculto" id="abierta">
+        <div class="contenedor timeline-container">
+            <!-- Buscador de usuario -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="buscarUsuario" class="search-input" placeholder="Buscar usuario...">
+                    <button onclick="buscarPorUsuario()" class="boton-buscar">Buscar</button>
+                    <button onclick="limpiarBusqueda()" class="boton-limpiar">Limpiar</button>
+                </div>
+            </div>
+
+            <!-- Filtros por año y mes -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label>Año:</label>
+                    <div class="custom-select" id="selectAno">
+                        <div class="select-trigger">Todos los años</div>
+                        <div class="select-options">
+                            <div class="select-option" data-value="">Todos los años</div>
+                            <div class="select-option" data-value="2021">2021</div>
+                            <div class="select-option" data-value="2022">2022</div>
+                            <div class="select-option" data-value="2023">2023</div>
+                            <div class="select-option" data-value="2024">2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Mes:</label>
+                    <div class="custom-select" id="selectMes">
+                        <div class="select-trigger">Todos los meses</div>
+                        <div class="select-options">
+                            <div class="select-option" data-value="">Todos los meses</div>
+                            <div class="select-option" data-value="01">Enero</div>
+                            <div class="select-option" data-value="02">Febrero</div>
+                            <div class="select-option" data-value="03">Marzo</div>
+                            <div class="select-option" data-value="04">Abril</div>
+                            <div class="select-option" data-value="05">Mayo</div>
+                            <div class="select-option" data-value="06">Junio</div>
+                            <div class="select-option" data-value="07">Julio</div>
+                            <div class="select-option" data-value="08">Agosto</div>
+                            <div class="select-option" data-value="09">Septiembre</div>
+                            <div class="select-option" data-value="10">Octubre</div>
+                            <div class="select-option" data-value="11">Noviembre</div>
+                            <div class="select-option" data-value="12">Diciembre</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas de tendencias -->
+            <div class="tendencias-section">
+                <h2>📊 Tendencias</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3 id="totalMemes">0</h3>
+                        <p>Total de Memes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="usuarioMasActivo">-</h3>
+                        <p>Usuario Más Activo</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="promLikes">0</h3>
+                        <p>Promedio de Likes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="mesTendencia">-</h3>
+                        <p>Mes Más Popular</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Línea del tiempo -->
+            <div class="timeline-section">
+                <h2>📅 Línea del Tiempo</h2>
+                <div class="timeline" id="timeline">
+                    <!-- Los items se generarán con JavaScript -->
+                </div>
+            </div>
+
+            <!-- Galería de memes -->
+            <div class="gallery-section">
+                <h2>🎨 Galería</h2>
+                <div class="memes-gallery" id="memesGallery">
+                    <!-- Los memes se mostrarán aquí -->
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Pie de la pagina -->
     <footer>
         <div class="contenedor">
@@ -59,6 +151,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/js/capsula.js"></script>
 </body>
 </html>

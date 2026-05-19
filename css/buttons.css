@@ -16,9 +16,3 @@
     transform: translateY(-2px);
     filter: brightness(1.06);
 }
-
-.boton {
-    font-size: 25px;
-    display: flex;
-    
-}
