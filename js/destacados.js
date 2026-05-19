@@ -87,7 +87,7 @@ function guardarVoto(memeID) {
     return false;
 }
 
-async function cargarMemesDesdeXML(ruta = '/memes.xml') {
+async function cargarMemesDesdeXML(ruta = '../memes.xml') {
     try {
         const resp = await fetch(ruta);
         if (!resp.ok) throw new Error('No se pudo cargar ' + ruta);
@@ -294,7 +294,7 @@ function resetFiltros() {
 window.addEventListener('DOMContentLoaded', async () => {
     usuarioActual = obtenerUsuarioID();
     
-    todosLosMemes = await cargarMemesDesdeXML('/memes.xml');
+    todosLosMemes = await cargarMemesDesdeXML('../memes.xml');
     memesActuales = [...todosLosMemes];
     
     if (!todosLosMemes.length) {
@@ -385,7 +385,7 @@ function resetFiltros() {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-    todosLosMemes = await cargarMemesDesdeXML('/memes.xml');
+    todosLosMemes = await cargarMemesDesdeXML('../memes.xml');
     memesActuales = [...todosLosMemes];
     
     if (!todosLosMemes.length) {
@@ -589,7 +589,7 @@ function resetFiltros() {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-    todosLosMemes = await cargarMemesDesdeXML('/memes.xml');
+    todosLosMemes = await cargarMemesDesdeXML('../memes.xml');
     memesActuales = [...todosLosMemes];
     
     if (!todosLosMemes.length) {

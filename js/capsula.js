@@ -205,7 +205,7 @@ function inicializarCustomSelects() {
 
 // Cargar memes del archivo XML
 function cargarMemesDelXML() {
-  fetch('/memes.xml')
+  fetch('../memes.xml')
     .then(response => response.text())
     .then(xml => {
       const parser = new DOMParser();
