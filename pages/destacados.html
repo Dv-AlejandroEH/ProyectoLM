@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="/css/buttons.css">
     <link rel="stylesheet" href="/css/cards.css">
     <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/destacados.css">
     <link rel="shortcut icon" href="../img/reloj-de-arena.png" type="image/x-icon">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid contenedor">
-            <a class="navbar-brand" href="#inicio">Cápsula del Tiempo</a>
+            <a class="navbar-brand" href="../index.html">Cápsula del Tiempo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,16 +44,41 @@
     </nav>
 
     <main class="contenedor">
-        <section class="seccion-capsula">
-            <h2>Destacados</h2>
-            <p>En esta sección se muestran los memes destacados por similitud visual.</p>
+        <!-- Header -->
+        <section class="seccion-capsula header-destacados">
+            <h2>✨ Destacados</h2>
+            <p>Los memes más populares de la comunidad. Descubre lo que todos comparten y disfruta de los mejores momentos.</p>
         </section>
 
-        <section class="contenedor seccion-capsula">
-            <h2>Memes más compartidos</h2>
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <!-- Estadísticas -->
+        <section class="seccion-capsula stats-section">
+            <h3>📊 Estadísticas</h3>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-total">0</div>
+                    <div class="stat-label">Memes Totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-likes">0</div>
+                    <div class="stat-label">Likes Totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-users">0</div>
+                    <div class="stat-label">Usuarios</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-trending">#1</div>
+                    <div class="stat-label">Top Meme</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrusel mejorado -->
+        <section class="seccion-capsula carousel-section">
+            <h3>🎠 Memes Más Compartidos</h3>
+            <div id="carouselExampleAutoplaying" class="carousel slide carousel-enhanced" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <!-- script.js rellenará las imágenes aquí -->
+                    <!-- destacados.js rellenará las imágenes aquí -->
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -64,13 +90,45 @@
                 </button>
             </div>
         </section>
+
+        <!-- Controles y Filtros -->
+        <section class="seccion-capsula controls-section">
+            <h3>🔍 Filtros</h3>
+            <div class="controls-container">
+                <div class="filter-group">
+                    <label for="filterUser">Filtrar por usuario:</label>
+                    <select id="filterUser" class="form-control">
+                        <option value="">Todos los usuarios</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">Ordenar por:</label>
+                    <select id="sortBy" class="form-control">
+                        <option value="likes-desc">Más likes</option>
+                        <option value="likes-asc">Menos likes</option>
+                        <option value="date-new">Más recientes</option>
+                        <option value="date-old">Más antiguos</option>
+                        <option value="name-asc">Nombre A-Z</option>
+                    </select>
+                </div>
+                <button id="btnReset" class="btn btn-secondary">🔄 Limpiar Filtros</button>
+            </div>
+        </section>
+
+        <!-- Grid de memes -->
+        <section class="seccion-capsula grid-section">
+            <h3>📸 Galería de Memes</h3>
+            <div id="memesGrid" class="memes-grid">
+                <!-- destacados.js rellenará el grid aquí -->
+            </div>
+        </section>
     </main>
 
 
     <!-- Pie de la pagina -->
     <footer>
         <div class="contenedor">
-            <p>Cápsula del Tiempo · Mensajes abiertos dentro de 5 años</p>
+            <p>Cápsula del Tiempo · Mensajes abiertos hasta 2100</p>
         </div>
     </footer>
 
