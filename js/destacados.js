@@ -4,6 +4,59 @@ let memesActuales = [];
 const HOY = '2026-05-19'; // Fecha de hoy
 let usuarioActual = null;
 
+// URL pública de la hoja (CSV) — dejar en blanco si no se usa.
+// Ejemplo: https://docs.google.com/spreadsheets/d/<<SHEET_ID>>/pub?output=csv
+window.SHEET_CSV_URL = '';
+
+// Parseador CSV simple que soporta campos entrecomillados
+function parseCSV(text) {
+    const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+    if (!lines.length) return [];
+    const headers = lines[0].split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim());
+    const rows = lines.slice(1).map(line => {
+        const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = cols[i] || '');
+        return obj;
+    });
+    return rows;
+}
+
+async function cargarMemesDesdeSheet(csvUrl) {
+    try {
+        const resp = await fetch(csvUrl);
+        if (!resp.ok) throw new Error('No se pudo obtener CSV: ' + resp.status);
+        const text = await resp.text();
+        const rows = parseCSV(text);
+        // Esperamos columnas: id, src, alt, usuario, fecha, likes, votable
+        const memes = rows.map((r, idx) => ({
+            id: r.id || ('meme_sheet_' + Date.now() + '_' + idx),
+            src: r.src || r.image || r.url || '',
+            alt: r.alt || r.descripcion || r.caption || '',
+            usuario: r.usuario || r.user || r.nombre || 'Anónimo',
+            fecha: r.fecha || HOY,
+            likes: parseInt(r.likes || '0', 10) || 0,
+            votable: (String(r.votable || r.votado || 'true')).toLowerCase() === 'true'
+        })).filter(m => m.src);
+        return memes;
+    } catch (e) {
+        console.error('Error cargando hoja:', e);
+        return [];
+    }
+}
+
+// Mezcla memes traídos desde la hoja con los ya cargados (reemplaza por id)
+function mergeMemesFromSheet(sheetMemes) {
+    const mapa = new Map(todosLosMemes.map(m => [m.id, m]));
+    sheetMemes.forEach(m => mapa.set(m.id, m));
+    todosLosMemes = Array.from(mapa.values()).filter(m => m.fecha === HOY);
+    memesActuales = [...todosLosMemes];
+    poblarCarrusel(todosLosMemes, 5);
+    poblarGrid(todosLosMemes);
+    poblarFiltros(todosLosMemes);
+    actualizarEstadisticas(todosLosMemes);
+}
+
 // Obtener o generar ID de usuario
 function obtenerUsuarioID() {
     let userID = localStorage.getItem('userID');
@@ -351,6 +404,48 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('filterUser')?.addEventListener('change', filtrarYOrdenar);
     document.getElementById('sortBy')?.addEventListener('change', filtrarYOrdenar);
     document.getElementById('btnReset')?.addEventListener('click', resetFiltros);
+});
+
+// Agregar botón y soporte para refrescar desde la hoja pública (CSV)
+window.addEventListener('DOMContentLoaded', async () => {
+    if (!window.SHEET_CSV_URL) return;
+
+    // Crear botón flotante de refrescar
+    const btn = document.createElement('button');
+    btn.id = 'btnFetchSheet';
+    btn.textContent = 'Refrescar desde hoja';
+    btn.style.position = 'fixed';
+    btn.style.right = '16px';
+    btn.style.bottom = '16px';
+    btn.style.zIndex = 9999;
+    btn.style.padding = '8px 12px';
+    btn.style.background = 'var(--primario, #007bff)';
+    btn.style.color = '#fff';
+    btn.style.border = 'none';
+    btn.style.borderRadius = '6px';
+    btn.style.cursor = 'pointer';
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        btn.textContent = 'Cargando...';
+        const sheetMemes = await cargarMemesDesdeSheet(window.SHEET_CSV_URL);
+        if (sheetMemes.length) {
+            mergeMemesFromSheet(sheetMemes);
+        } else {
+            alert('No se encontraron memes en la hoja o hubo un error.');
+        }
+        btn.textContent = 'Refrescar desde hoja';
+        btn.disabled = false;
+    });
+
+    // Auto-refrescar una vez al cargar si se definió la URL
+    try {
+        const sheetMemes = await cargarMemesDesdeSheet(window.SHEET_CSV_URL);
+        if (sheetMemes.length) mergeMemesFromSheet(sheetMemes);
+    } catch (e) {
+        console.error('Error al auto-refrescar desde hoja:', e);
+    }
 });
 
 function poblarCarrusel(memes, n = 5) {
